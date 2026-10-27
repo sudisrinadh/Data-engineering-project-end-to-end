@@ -1,0 +1,24 @@
+# Azure Data Factory (ADF)
+
+## Overview
+Azure Data Factory orchestrates the ingestion of source data into Azure Data Lake Storage Gen2.
+
+## JSON Configuration
+A JSON configuration file is stored in ADLS Gen2. It contains the source file links used by the pipeline to identify the files that need to be processed.
+
+## Pipeline Workflow
+1. Read the JSON configuration from ADLS Gen2.
+2. Extract the required source file links.
+3. Use the configured links to retrieve source data.
+4. Convert the source data from JSON to CSV where required.
+5. Apply the required column mapping, renaming, or data-type changes.
+6. Store the resulting CSV files in the Bronze layer.
+
+## Dynamic Processing
+The pipeline uses configuration-driven processing to reduce hardcoded file paths. Where configured, parameters and a ForEach activity allow the pipeline to process multiple files.
+
+## Validation
+- Verify that the configuration file is accessible.
+- Confirm that the source links are valid.
+- Check ADF activity execution status.
+- Verify that the expected CSV files are present in Bronze.
